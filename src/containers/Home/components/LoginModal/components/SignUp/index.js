@@ -5,6 +5,7 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      displayName: "",
       email: "",
       password: ""
     };
@@ -18,6 +19,10 @@ class SignUp extends Component {
     return (
       <React.Fragment>
         <Title>Nice to meet you!</Title>
+        <LineInput
+          placeholder="Username"
+          onChange={e => this.onChange("displayName", e)}
+        />
         <LineInput
           placeholder="Email"
           onChange={e => this.onChange("email", e)}
