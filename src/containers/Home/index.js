@@ -7,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <Container>
-        {/* <LoginModal /> */}
+        <LoginModal />
         <UI />
       </Container>
     );
