@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container } from './styles'
+import { LoginBox, Shadow } from './styles'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 
@@ -24,12 +24,14 @@ class LoginModal extends Component {
 
   render() {
     return (
-      <Container>
-        <Content
-          loginMode={this.state.loginMode}
-          toggleLoginMode={this.toggleLoginMode}
-        />
-      </Container>
+      <Shadow>
+        <LoginBox>
+          <Content
+            loginMode={this.state.loginMode}
+            toggleLoginMode={this.toggleLoginMode}
+          />
+        </LoginBox>
+      </Shadow>
     )
   }
 }
