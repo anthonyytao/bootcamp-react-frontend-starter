@@ -7,10 +7,17 @@ class SignUp extends Component {
   constructor(props) {
     super(props)
     this.state = {
+<<<<<<< HEAD
       name: '',
       email: '',
       password: ''
     }
+=======
+      displayName: "",
+      email: "",
+      password: ""
+    };
+>>>>>>> 6863fcbb1bb81a3a7d4c0894a9f090fce0968c86
   }
 
   onChange = (key, e) => {
@@ -29,6 +36,7 @@ class SignUp extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <Mutation
         mutation={this.SIGN_UP}
         onCompleted={data => {
@@ -90,6 +98,29 @@ class SignUp extends Component {
         }}
       </Mutation>
     )
+=======
+      <React.Fragment>
+        <Title>Nice to meet you!</Title>
+        <LineInput
+          placeholder="Username"
+          onChange={e => this.onChange("displayName", e)}
+        />
+        <LineInput
+          placeholder="Email"
+          onChange={e => this.onChange("email", e)}
+        />
+        <LineInput
+          placeholder="Password"
+          onChange={e => this.onChange("password", e)}
+          type="password"
+        />
+        <SubmitButton>Get Started</SubmitButton>
+        <SecondaryOptionText onClick={this.props.changeMode}>
+          Or Login
+        </SecondaryOptionText>
+      </React.Fragment>
+    );
+>>>>>>> 6863fcbb1bb81a3a7d4c0894a9f090fce0968c86
   }
 }
 

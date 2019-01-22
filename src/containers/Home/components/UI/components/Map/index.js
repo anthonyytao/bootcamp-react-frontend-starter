@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React from "react";
+=======
+import React, { Component } from "react";
+>>>>>>> 6863fcbb1bb81a3a7d4c0894a9f090fce0968c86
 import GoogleMapReact from "google-map-react";
 
 const AnyReactComponent = ({ text }) => (
@@ -38,4 +42,8 @@ class Map extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 export default Map;
+=======
+export default Map;
+>>>>>>> 6863fcbb1bb81a3a7d4c0894a9f090fce0968c86
