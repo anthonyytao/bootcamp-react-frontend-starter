@@ -1,10 +1,10 @@
 import React from 'react'
 import { Container, Text } from './styles'
 
-const Welcome = () => (
+const Navbar = () => (
   <Container>
     <Text>DEV Winter Bootcamp React Starter!</Text>
   </Container>
 )
 
-export default Welcome
+export default Navbar
