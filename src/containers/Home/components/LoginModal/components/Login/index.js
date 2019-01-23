@@ -30,7 +30,6 @@ class Login extends Component {
   `
 
   render() {
-    if (this.state.email !== '' && this.state.password !== '') {console.log("Hi")}
     return (
       <Mutation
         mutation={this.LOGIN}
@@ -65,7 +64,7 @@ class Login extends Component {
                 onChange={e => this.onChange('password', e)}
                 type="password"
               />
-              <SubmitButton
+              {(this.state.email && this.state.password) && <SubmitButton
                 onClick={() => {
                   login({
                     variables: {
@@ -79,11 +78,11 @@ class Login extends Component {
                   this.setState({ password: '' })
                 }}
               >
-              Submit
-              </SubmitButton>
-              <SecondaryOptionText onClick={this.props.changeMode}>
+              &#x2713;
+              </SubmitButton>}
+              {(!(this.state.email && this.state.password)) && <SecondaryOptionText onClick={this.props.changeMode}>
                 Don't have an account? Sign up here.
-              </SecondaryOptionText>
+              </SecondaryOptionText>}
             </React.Fragment>
           )
         }}

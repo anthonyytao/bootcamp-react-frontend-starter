@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Flex } from 'grid-styled'
 
 export const Title = styled(Flex)`
-  color: #2473f2;
+  color: black;
   font-size: 50px;
   font-family: Nunito;
   margin-bottom: 20px;
@@ -22,10 +22,11 @@ export const LineInput = styled.input`
 `
 export const SubmitButton = styled(Flex)`
   color: white;
-  width: 200px;
+  margin-top: 20px;
+  width: 40px;
   height: 40px;
-  border-radius: 10px;
-  background-color: #2473f2;
+  border-radius: 20px;
+  background-color: #7AC70C;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -34,9 +35,10 @@ export const SubmitButton = styled(Flex)`
   }
 `
 export const SecondaryOptionText = styled(Flex)`
-  color: #2473f2;
+  color: #1CB0F6;
+  height: 30px;
+  margin-top: 30px;
   font-size: 12px;
-  margin-top: 10px;
   font-family: Open Sans;
   cursor: pointer;
   &:hover {

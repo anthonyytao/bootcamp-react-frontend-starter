@@ -7,6 +7,7 @@ const Content = ({ loginMode, toggleLoginMode }) => {
   if (loginMode) {
     return <Login changeMode={toggleLoginMode} />
   }
+  
   return <SignUp changeMode={toggleLoginMode} />
 }
 

@@ -52,7 +52,7 @@ class SignUp extends Component {
             <React.Fragment>
               <Title>Sign Up</Title>
               <LineInput
-                placeholder="Userame"
+                placeholder="Username"
                 onChange={e => this.onChange("displayName", e)}
               />
               <LineInput
@@ -64,7 +64,7 @@ class SignUp extends Component {
                 onChange={e => this.onChange("password", e)}
                 type="password"
               />
-              <SubmitButton
+              {(this.state.email && this.state.password) && <SubmitButton
                 onClick={() => {
                   signUp({
                     variables: {
@@ -80,11 +80,11 @@ class SignUp extends Component {
                   this.setState({ password: '' })
                 }}
               >
-                Submit
-              </SubmitButton>
-              <SecondaryOptionText onClick={this.props.changeMode}>
+              &#x2713;
+              </SubmitButton>}
+              {(!(this.state.email && this.state.password)) && <SecondaryOptionText onClick={this.props.changeMode}>
                 Already have an account? Login here.
-              </SecondaryOptionText>
+              </SecondaryOptionText>}
             </React.Fragment>
           )
         }}
