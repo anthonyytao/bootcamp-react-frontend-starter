@@ -1,39 +1,28 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
 
-const AnyReactComponent = ({ text }) => (
-  <div
-    style={{
-      color: "white",
-      background: "grey",
-      padding: "15px 10px",
-      display: "inline-flex",
-      textAlign: "center",
-      alignItems: "center",
-      justifyContent: "center",
-      borderRadius: "100%",
-      transform: "translate(-50%, -50%)"
-    }}
-  >
-    {text}
-  </div>
-);
+const heatmapData = {
+  positions: [{ lat: 42.372042, lng: -71.118454 }, { lat: 42.38, lng: -71.12 }],
+  options: {
+    radius: 10,
+    opacity: 0.5
+  }
+};
 
 class Map extends React.Component {
-  static defaultProps = {
-    center: { lat: 42.375, lng: -71.1167 },
-    zoom: 15.2
-  };
+  componentWillMount() {
+    this.props.findCoordinates();
+  }
 
   render() {
     return (
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyBXGSsSDuDecaYMwfAbE54T0VzM5Sm6cbo" }}
-        defaultCenter={this.props.center}
+        center={{ lat: this.props.lat, lng: this.props.lng }}
         defaultZoom={this.props.zoom}
-      >
-        <AnyReactComponent lat={42.372042} lng={-71.118454} text={"HSA"} />
-      </GoogleMapReact>
+        heatmapLibrary={true}
+        heatmap={heatmapData}
+      />
     );
   }
 }
