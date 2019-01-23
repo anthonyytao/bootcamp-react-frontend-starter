@@ -1,14 +1,23 @@
 import React, { Component } from "react";
-// import BottomBar from "./components/BottomBar";
+import BottomBar from "./components/BottomBar";
 import Map from "./components/Map";
 // import TopBar from "./components/TopBar";
 
 class UI extends Component {
+  constructor() {
+    super();
+    this.state = {
+      lat: 42.375,
+      lng: -71.1167,
+      zoom: 15.2
+    };
+  }
+
   findCoordinates = () => {
     if ("geolocation" in navigator) {
       // check if geolocation is supported/enabled on current browser
       navigator.geolocation.getCurrentPosition(
-        function success(position) {
+        position => {
           // for when getting location is a success
           console.log(
             "latitude",
@@ -16,8 +25,11 @@ class UI extends Component {
             "longitude",
             position.coords.longitude
           );
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          this.setState({ lat: lat, lng: lng });
         },
-        function error(error_message) {
+        error_message => {
           // for when getting location results in an error
           console.error(
             "An error has occured while retrieving location",
@@ -35,12 +47,16 @@ class UI extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* <TopBar />
-      <BottomBar /> */}
+        {/* <TopBar /> */}
         <div style={{ width: "100%", height: "600px" }}>
-          <Map />
+          <Map
+            lat={this.state.lat}
+            lng={this.state.lng}
+            zoom={this.state.zoom}
+            findCoordinates={this.findCoordinates}
+          />
         </div>
-        <button onClick={() => this.findCoordinates()}>find coordinates</button>
+        <BottomBar findCoordinates={this.findCoordinates} />
       </React.Fragment>
     );
   }
