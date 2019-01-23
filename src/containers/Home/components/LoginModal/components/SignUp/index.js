@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import { Title, LineInput, SubmitButton, SecondaryOptionText } from "./styles";
-import { Mutation } from "react-apollo";
-import gql from "graphql-tag";
+import React, { Component } from 'react'
+import { Title, LineInput, SubmitButton, SecondaryOptionText } from './styles'
+import { Mutation } from 'react-apollo'
+import gql from 'graphql-tag'
 
 class SignUp extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      name: "",
-      email: "",
-      password: ""
-    };
+      name: '',
+      email: '',
+      password: ''
+    }
   }
 
   onChange = (key, e) => {
-    this.setState({ [key]: e.target.value });
-  };
+    this.setState({ [key]: e.target.value })
+  }
 
   SIGN_UP = gql`
     mutation createUser($input: UserInput!) {
@@ -25,7 +25,7 @@ class SignUp extends Component {
         token
       }
     }
-  `;
+  `
 
   render() {
     return (
@@ -35,19 +35,19 @@ class SignUp extends Component {
           if (data.createUser.success) {
             const {
               createUser: { token }
-            } = data;
-            localStorage.setItem("token", token);
-            this.props.history.push("/users");
-            this.props.authenticateUser();
+            } = data
+            localStorage.setItem('token', token)
+            this.props.history.push('/users')
+            this.props.authenticateUser()
           }
-          return <div>{data.createUser.message} </div>;
+          return <div>{data.createUser.message} </div>
         }}
       >
         {(signUp, { loading, error }) => {
           // this loading state will probably never show, but it's helpful to
           // have for testing
-          if (loading) return <p> Loading </p>;
-          if (error) return <p>An error occurred</p>;
+          if (loading) return <p> Loading </p>
+          if (error) return <p>An error occurred</p>
           return (
             <React.Fragment>
               <Title>Sign Up</Title>
@@ -74,10 +74,10 @@ class SignUp extends Component {
                         name: this.state.name
                       }
                     }
-                  });
-                  this.setState({ name: "" });
-                  this.setState({ email: "" });
-                  this.setState({ password: "" });
+                  })
+                  this.setState({ name: '' })
+                  this.setState({ email: '' })
+                  this.setState({ password: '' })
                 }}
               >
                 Submit
@@ -86,10 +86,10 @@ class SignUp extends Component {
                 Already have an account? Login here.
               </SecondaryOptionText>
             </React.Fragment>
-          );
+          )
         }}
       </Mutation>
-    );
+    )
   }
 }
 

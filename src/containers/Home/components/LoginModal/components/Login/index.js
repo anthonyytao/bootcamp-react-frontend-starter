@@ -30,6 +30,7 @@ class Login extends Component {
   `
 
   render() {
+    if (this.state.email !== '' && this.state.password !== '') {console.log("Hi")}
     return (
       <Mutation
         mutation={this.LOGIN}
