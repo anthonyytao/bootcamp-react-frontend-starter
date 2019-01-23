@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button, ButtonBar, Counter, Clicker } from './styles';
 
 class BottomBar extends Component {
   constructor() {
@@ -13,26 +14,34 @@ class BottomBar extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <button onClick={() => this.setState({ beer: this.state.beer + 1 })}>
-          Beer
-        </button>
-        <div>{this.state.beer}</div>
-        <button onClick={() => this.setState({ wine: this.state.wine + 1 })}>
-          Wine
-        </button>
-        <div>{this.state.wine}</div>
-        <button
-          onClick={() => this.setState({ liquor: this.state.liquor + 1 })}
-        >
-          Liquor
-        </button>
-        <div>{this.state.liquor}</div>
-        <button onClick={() => this.setState({ mixed: this.state.mixed + 1 })}>
-          Mixed
-        </button>
-        <div>{this.state.mixed}</div>
-      </React.Fragment>
+      <ButtonBar>
+        <Clicker>
+          <Button onClick={() => this.setState({ beer: this.state.beer + 1 })}>
+            Beer
+          </Button>
+          <Counter>{this.state.beer}</Counter>
+        </Clicker>
+        <Clicker>
+          <Button onClick={() => this.setState({ wine: this.state.wine + 1 })}>
+            Wine
+          </Button>
+          <Counter>{this.state.wine}</Counter>
+        </Clicker>
+        <Clicker>
+          <Button
+            onClick={() => this.setState({ liquor: this.state.liquor + 1 })}
+          >
+            Liquor
+          </Button>
+          <Counter>{this.state.liquor}</Counter>
+        </Clicker>
+        <Clicker>
+          <Button onClick={() => this.setState({ mixed: this.state.mixed + 1 })}>
+            Mixed
+          </Button>
+          <Counter>{this.state.mixed}</Counter>
+        </Clicker>
+      </ButtonBar>
     );
   }
 }

@@ -4,7 +4,7 @@ import LoginModal from "./components/LoginModal";
 import UI from "./components/UI";
 
 const Content = () => {
-  if (!false) {
+  if (!true) {
     return (
       <React.Fragment>
         <UI />
