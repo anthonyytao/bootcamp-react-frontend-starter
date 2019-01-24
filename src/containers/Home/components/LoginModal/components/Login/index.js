@@ -1,94 +1,68 @@
-import React, { Component } from 'react'
-import { Title, LineInput, SubmitButton, SecondaryOptionText } from './styles'
-import gql from 'graphql-tag'
-import { Mutation } from 'react-apollo'
+import React, { Component } from "react";
+import { Title, LineInput, SubmitButton, SecondaryOptionText } from "./styles";
+import { Mutation } from "react-apollo";
+import LOGIN from "./mutations";
 
 class Login extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      email: '',
-      password: ''
-    }
+      email: "",
+      password: ""
+    };
   }
 
   onChange = (key, e) => {
-    this.setState({ [key]: e.target.value })
-  }
-
-  LOGIN = gql`
-    mutation loginUser($input: LoginInput!) {
-      loginUser(input: $input) {
-        message
-        success
-        user {
-          name
-        }
-        token
-      }
-    }
-  `
+    this.setState({ [key]: e.target.value });
+  };
 
   render() {
     return (
       <Mutation
-        mutation={this.LOGIN}
+        mutation={LOGIN}
+        variables={{ input: { email: this.state.email, password: this.state } }}
         onCompleted={data => {
           if (data.loginUser.success) {
             const {
               loginUser: { token }
-            } = data
-            localStorage.setItem('token', token)
-            this.props.history.push('/users')
-            this.props.authenticateUser()
-          } else {
-            this.setState({ error: data.loginUser.message })
+            } = data;
+            localStorage.setItem("token", token);
+            this.props.history.push("/users");
+            this.props.authenticateUser();
           }
+          return <div>{data.loginUser.error.message} </div>;
         }}
       >
-        {(login, { loading, error }) => {
-          // this loading state will probably never show, but it's helpful to
-          // have for testing
-          if (loading) return <p> Loading </p>
-          if (error) return <p>An error occurred</p>
+        {(loginUser, { loading, error }) => {
+          if (loading) return <p> Loading </p>;
+          if (error) return <p>An error occurred</p>;
           return (
             <React.Fragment>
               <Title>Login</Title>
               {this.state.error && <p>{this.state.error} </p>}
               <LineInput
                 placeholder="Email"
-                onChange={e => this.onChange('email', e)}
+                onChange={e => this.onChange("email", e)}
               />
               <LineInput
                 placeholder="Password"
-                onChange={e => this.onChange('password', e)}
+                onChange={e => this.onChange("password", e)}
                 type="password"
               />
-              {(this.state.email && this.state.password) && <SubmitButton
-                onClick={() => {
-                  login({
-                    variables: {
-                      input: {
-                        email: this.state.email,
-                        password: this.state.password
-                      }
-                    }
-                  })
-                  this.setState({ email: '' })
-                  this.setState({ password: '' })
-                }}
-              >
-              &#x2713;
-              </SubmitButton>}
-              {(!(this.state.email && this.state.password)) && <SecondaryOptionText onClick={this.props.changeMode}>
-                Don't have an account? Sign up here.
-              </SecondaryOptionText>}
+              {this.state.email && this.state.password && (
+                <SubmitButton onClick={loginUser}>&#x2713;</SubmitButton>
+              )}
+              {!(this.state.email && this.state.password) && (
+                <SecondaryOptionText onClick={this.props.changeMode}>
+                  Don't have an account? Sign up here.
+                </SecondaryOptionText>
+              )}
             </React.Fragment>
-          )
+          );
         }}
       </Mutation>
-    )
+    );
   }
 }
 
-export default Login
+export default Login;

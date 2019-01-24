@@ -41,8 +41,6 @@ class SignUp extends Component {
         }}
       >
         {(createUser, { loading, error }) => {
-          // this loading state will probably never show, but it's helpful to
-          // have for testing
           if (loading) return <p> Loading </p>;
           if (error) return <p>An error occurred</p>;
           return (
@@ -62,22 +60,7 @@ class SignUp extends Component {
                 type="password"
               />
               {this.state.email && this.state.password && (
-                <SubmitButton
-                  onClick={() => {
-                    createUser({
-                      variables: {
-                        input: {
-                          email: this.state.email,
-                          password: this.state.password,
-                          name: this.state.name
-                        }
-                      }
-                    });
-                    this.setState({ name: "" });
-                    this.setState({ email: "" });
-                    this.setState({ password: "" });
-                  }}
-                />
+                <SubmitButton onClick={createUser}>&#x2713;</SubmitButton>
               )}
               {!(this.state.email && this.state.password) && (
                 <SecondaryOptionText onClick={this.props.changeMode}>
