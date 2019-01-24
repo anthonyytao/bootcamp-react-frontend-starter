@@ -4,6 +4,9 @@ const LOGIN = gql`
   mutation loginUser($input: LoginInput!) {
     loginUser(input: $input) {
       success
+      user {
+        id
+      }
       token
       error {
         message

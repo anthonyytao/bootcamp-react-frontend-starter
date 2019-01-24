@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import BottomBar from "./components/BottomBar";
 import Map from "./components/Map";
 import TopBar from "./components/TopBar";
+import { Query } from "react-apollo";
+import GET_DRINKS from "./queries.js";
 
-const positions = [
-  { lat: 42.372042, lng: -71.118454 },
-  { lat: 42.367, lng: -71.12 },
-  { lat: 42.371, lng: -71.117 },
-  { lat: 42.373, lng: -71.117 }
-];
+// const positions = [
+//   { lat: 42.372042, lng: -71.118454 },
+//   { lat: 42.367, lng: -71.12 },
+//   { lat: 42.371, lng: -71.117 },
+//   { lat: 42.373, lng: -71.117 }
+// ];
 
 class UI extends Component {
   constructor() {
@@ -83,20 +85,34 @@ class UI extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <TopBar />
-        <div style={{ width: "100%", height: "600px" }}>
-          <Map
-            lat={this.state.lat}
-            lng={this.state.lng}
-            zoom={this.state.zoom}
-            findCoordinates={this.findCoordinates}
-            positions={positions}
-            options={this.state.options}
-          />
-        </div>
-        <BottomBar />
-      </React.Fragment>
+      <Query
+        query={GET_DRINKS}
+        variables={{ input: { Lat: this.state.lat, Long: this.state.lng } }}
+      >
+        {({ loading, error, data }) => {
+          if (loading) return <p> Loading </p>;
+          if (error) return <p>An error occurred</p>;
+
+          return (
+            <React.Fragment>
+              <TopBar />
+              <div style={{ width: "100%", height: "600px" }}>
+                <Map
+                  lat={this.state.lat}
+                  lng={this.state.lng}
+                  zoom={this.state.zoom}
+                  findCoordinates={this.findCoordinates}
+                  positions={data.drinks.Drink.map(drink => [
+                    { lat: drink.lat, lng: drink.long }
+                  ])}
+                  options={this.state.options}
+                />
+              </div>
+              <BottomBar />
+            </React.Fragment>
+          );
+        }}
+      </Query>
     );
   }
 }
