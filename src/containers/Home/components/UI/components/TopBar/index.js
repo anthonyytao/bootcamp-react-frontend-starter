@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dropdown, DropdownBar, SettingsButton } from './styles';
+import { Dropdown, DropdownBar, SettingsButton } from "./styles";
 
 class TopBar extends Component {
   constructor() {
@@ -16,36 +16,53 @@ class TopBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <SettingsButton></SettingsButton>
+        <SettingsButton />
         <DropdownBar>
-          <Dropdown>
+          <Dropdown
+            id="groups"
+            onChange={() =>
+              this.props.updateGroup(document.getElementById("groups").value)
+            }
+          >
             <option selected="selected" disabled="disabled">
               Select people
             </option>
-            <option value="allpeople">All</option>
-            <option value="friends">Friends</option>
-            <option value="me">Me</option>
+            <option value="ALL">All</option>
+            <option value="FRIENDS">Friends</option>
+            <option value="ME">Me</option>
           </Dropdown>
-          <Dropdown>
+          <Dropdown
+            id="drinkTypes"
+            onChange={() =>
+              this.props.updateDrinkType(
+                document.getElementById("drinkTypes").value
+              )
+            }
+          >
             <option selected="selected" disabled="disabled">
               Select a drink
             </option>
-            <option value="alldrinks">All</option>
-            <option value="beer">Beer</option>
-            <option value="wine">Wine</option>
-            <option value="liquor">Liquor</option>
-            <option value="mixed">Mixed</option>
+            <option value="ALL">All</option>
+            <option value="BEER">Beer</option>
+            <option value="WINE">Wine</option>
+            <option value="LIQUOR">Liquor</option>
+            <option value="MIXED">Mixed</option>
           </Dropdown>
-          <Dropdown>
+          <Dropdown
+            id="times"
+            onChange={() =>
+              this.props.updateTime(document.getElementById("times").value)
+            }
+          >
             <option selected="selected" disabled="disabled">
               Select a time
             </option>
-            <option value="alltime">All</option>
-            <option value="hour">Hour</option>
-            <option value="day">Day</option>
-            <option value="week">Week</option>
-            <option value="month">Month</option>
-            <option value="year">Year</option>
+            <option value="ALL">All</option>
+            <option value="HOUR">Hour</option>
+            <option value="DAY">Day</option>
+            <option value="WEEK">Week</option>
+            <option value="MONTH">Month</option>
+            <option value="YEAR">Year</option>
           </Dropdown>
           <div>
             <input

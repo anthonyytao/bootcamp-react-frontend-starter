@@ -18,6 +18,9 @@ class UI extends Component {
     this.state = {
       lat: 42.375,
       lng: -71.1167,
+      type: "",
+      date: "",
+      group: "",
       zoom: 15.2,
       options: {
         radius: 10,
@@ -54,43 +57,35 @@ class UI extends Component {
     }
   };
 
-  //   pushCoordinates = () => {
-  //     if ("geolocation" in navigator) {
-  //       navigator.geolocation.getCurrentPosition(
-  //         position => {
-  //           console.log(
-  //             "latitude",
-  //             position.coords.latitude,
-  //             "longitude",
-  //             position.coords.longitude
-  //           );
-  //           this.setState({
-  //             positions: [
-  //               ...this.state.positions,
-  //               { lat: position.coords.latitude, lng: position.coords.longitude }
-  //             ]
-  //           });
-  //         },
-  //         error_message => {
-  //           console.error(
-  //             "An error has occured while retrieving location",
-  //             error_message
-  //           );
-  //         }
-  //       );
-  //     } else {
-  //       console.log("geolocation is not enabled on this browser");
-  //     }
-  //   };
+  updateDrinkType = text => {
+    this.setState({ type: text });
+  };
+
+  updateTime = text => {
+    this.setState({ date: text });
+  };
+
+  updateGroup = text => {
+    this.setState({ group: text });
+  };
 
   render() {
     return (
       <React.Fragment>
-        <TopBar />
+        <TopBar
+          updateDrinkType={this.updateDrinkType}
+          updateTime={this.updateTime}
+          updateGroup={this.updateGroup}
+        />
         <Query
           query={GET_DRINKS}
           variables={{
-            input: { location: { Lat: this.state.lat, Long: this.state.lng } }
+            input: {
+              location: { Lat: this.state.lat, Long: this.state.lng },
+              type: this.state.type,
+              date: this.state.date,
+              group: this.state.group
+            }
           }}
         >
           {({ loading, error, data }) => {
@@ -105,7 +100,7 @@ class UI extends Component {
                   zoom={this.state.zoom}
                   findCoordinates={this.findCoordinates}
                   positions={data.drinks.drinks.map(drink => [
-                    { lat: drink.lat, lng: drink.long }
+                    { lat: parseFloat(drink.lat), lng: parseFloat(drink.long) }
                   ])}
                   options={this.state.options}
                 />
