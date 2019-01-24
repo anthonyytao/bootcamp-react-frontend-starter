@@ -4,14 +4,14 @@ import { Flex } from 'grid-styled'
 export const Title = styled(Flex)`
   color: black;
   font-size: 50px;
-  font-family: Nunito;
+  font-family: 'Nunito';
   margin-bottom: 20px;
 `
 
 export const LineInput = styled.input`
   height: 30px;
   width: 400px;
-  font-family: Open Sans;
+  font-family: 'Open Sans';
   margin-bottom: 20px;
   text-align: center;
   background-color: rgba(255,255,255,0);
@@ -39,7 +39,7 @@ export const SecondaryOptionText = styled(Flex)`
   height: 30px;
   margin-top: 30px;
   font-size: 12px;
-  font-family: Open Sans;
+  font-family: 'Open Sans';
   cursor: pointer;
   &:hover {
     opacity: 0.8;
