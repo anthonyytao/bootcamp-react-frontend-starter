@@ -1,18 +1,13 @@
 import gql from "graphql-tag";
 
 const GET_NUMBERS = gql`
-  query number($input: drinksQuery) {
+  query number($input: numberQuery) {
     number(input: $input) {
       error {
         message
       }
       success
-      drinks {
-        Drink {
-          lat
-          long
-        }
-      }
+      number
     }
   }
 `;

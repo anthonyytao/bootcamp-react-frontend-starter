@@ -85,36 +85,36 @@ class UI extends Component {
 
   render() {
     return (
-      /*<Query
-        query={GET_DRINKS}
-        variables={{
-          input: { location: { Lat: this.state.lat, Long: this.state.lng } }
-        }}
-      >
-        {({ loading, error, data }) => {
-          if (loading) return <p> Loading </p>;
-          if (error) return <p>An error occurred</p>;
+      <React.Fragment>
+        <TopBar />
+        <Query
+          query={GET_DRINKS}
+          variables={{
+            input: { location: { Lat: this.state.lat, Long: this.state.lng } }
+          }}
+        >
+          {({ loading, error, data }) => {
+            if (loading) return <p> Loading </p>;
+            if (error) return <p>An error occurred</p>;
 
-          return (*/
-            <React.Fragment>
-              <TopBar />
+            return (
               <div style={{ width: "100%", height: "600px" }}>
                 <Map
                   lat={this.state.lat}
                   lng={this.state.lng}
                   zoom={this.state.zoom}
                   findCoordinates={this.findCoordinates}
-                  /*positions={data.drinks.Drink.map(drink => [
+                  positions={data.drinks.drinks.map(drink => [
                     { lat: drink.lat, lng: drink.long }
-                  ])}*/
+                  ])}
                   options={this.state.options}
                 />
               </div>
-              <BottomBar />
-            </React.Fragment>
-          /*);
-        }}
-      </Query>*/
+            );
+          }}
+        </Query>
+        <BottomBar lat={this.state.lat} lng={this.state.lng} />
+      </React.Fragment>
     );
   }
 }

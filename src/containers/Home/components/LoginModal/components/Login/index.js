@@ -20,7 +20,9 @@ class Login extends Component {
     return (
       <Mutation
         mutation={LOGIN}
-        variables={{ input: { email: this.state.email, password: this.state } }}
+        variables={{
+          input: { email: this.state.email, password: this.state.password }
+        }}
         onCompleted={data => {
           if (data.loginUser.success) {
             const {

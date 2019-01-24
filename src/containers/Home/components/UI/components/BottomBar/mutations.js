@@ -1,13 +1,11 @@
 import gql from "graphql-tag";
 
-const PUSH_COORDINATES = gql`
+const CREATE_DRINK = gql`
   mutation createDrink($input: CreateDrinkInput!) {
     createDrink(input: $input) {
       drink {
-        Drink {
-          lat
-          long
-        }
+        lat
+        long
       }
       error {
         message
@@ -16,4 +14,4 @@ const PUSH_COORDINATES = gql`
   }
 `;
 
-export default PUSH_COORDINATES;
+export default CREATE_DRINK;

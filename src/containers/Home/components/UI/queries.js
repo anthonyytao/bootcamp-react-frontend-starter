@@ -8,10 +8,8 @@ const GET_DRINKS = gql`
       }
       success
       drinks {
-        Drink {
-          lat
-          long
-        }
+        lat
+        long
       }
     }
   }
