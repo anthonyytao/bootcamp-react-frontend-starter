@@ -1,44 +1,125 @@
 import React, { Component } from "react";
-import { Button, ButtonBar, Counter, Clicker } from './styles';
+import { Button, ButtonBar, Counter, Clicker } from "./styles";
+import { Mutation, Query } from "react-apollo";
+import GET_NUMBER from "./queries";
+import CREATE_DRINK from "./mutations";
 
 class BottomBar extends Component {
-  constructor() {
-    super();
-    this.state = {
-      beer: 0,
-      wine: 0,
-      liquor: 0,
-      mixed: 0
-    };
-  }
-
   render() {
     return (
       <ButtonBar>
-        <Clicker>
-          <Button onClick={() => this.setState({ beer: this.state.beer + 1 })}>
-            B
-          </Button>
-          <Counter>{this.state.beer}</Counter>
-        </Clicker>
-        <Clicker>
-          <Button onClick={() => this.setState({ wine: this.state.wine + 1 })}>
-            W
-          </Button>
-          <Counter>{this.state.wine}</Counter>
-        </Clicker>
-        <Clicker>
-          <Button onClick={() => this.setState({ liquor: this.state.liquor + 1 })}>
-            L
-          </Button>
-          <Counter>{this.state.liquor}</Counter>
-        </Clicker>
-        <Clicker>
-          <Button onClick={() => this.setState({ mixed: this.state.mixed + 1 })}>
-            M
-          </Button>
-          <Counter>{this.state.mixed} </Counter>
-        </Clicker>
+        <Mutation
+          mutation={CREATE_DRINK}
+          variables={{
+            input: { type: "BEER", lat: this.props.lat, long: this.props.lng }
+          }}
+        >
+          {(createDrink, { loading, error }) => {
+            if (loading) return <p> Loading </p>;
+            if (error) return <p>An error occurred</p>;
+            return (
+              <Clicker>
+                <Button onClick={createDrink}>B</Button>
+                <Query
+                  query={GET_NUMBER}
+                  variables={{
+                    input: { type: "BEER" }
+                  }}
+                >
+                  {({ loading, error, data }) => {
+                    if (loading) return <p> Loading </p>;
+                    if (error) return <p>An error occurred</p>;
+                    return <Counter>{data.number.number}</Counter>;
+                  }}
+                </Query>
+              </Clicker>
+            );
+          }}
+        </Mutation>
+        <Mutation
+          mutation={CREATE_DRINK}
+          variables={{
+            input: { type: "WINE", lat: this.props.lat, long: this.props.lng }
+          }}
+        >
+          {(createDrink, { loading, error }) => {
+            if (loading) return <p> Loading </p>;
+            if (error) return <p>An error occurred</p>;
+            return (
+              <Clicker>
+                <Button onClick={createDrink}>W</Button>
+                <Query
+                  query={GET_NUMBER}
+                  variables={{
+                    input: { type: "WINE" }
+                  }}
+                >
+                  {({ loading, error, data }) => {
+                    if (loading) return <p> Loading </p>;
+                    if (error) return <p>An error occurred</p>;
+                    return <Counter>{data.number.number}</Counter>;
+                  }}
+                </Query>
+              </Clicker>
+            );
+          }}
+        </Mutation>
+        <Mutation
+          mutation={CREATE_DRINK}
+          variables={{
+            input: { type: "LIQUOR", lat: this.props.lat, long: this.props.lng }
+          }}
+        >
+          {(createDrink, { loading, error }) => {
+            if (loading) return <p> Loading </p>;
+            if (error) return <p>An error occurred</p>;
+            return (
+              <Clicker>
+                <Button onClick={createDrink}>L</Button>
+                <Query
+                  query={GET_NUMBER}
+                  variables={{
+                    input: { type: "LIQUOR" }
+                  }}
+                >
+                  {({ loading, error, data }) => {
+                    if (loading) return <p> Loading </p>;
+                    if (error) return <p>An error occurred</p>;
+                    return <Counter>{data.number.number}</Counter>;
+                  }}
+                </Query>
+              </Clicker>
+            );
+          }}
+        </Mutation>
+        <Mutation
+          mutation={CREATE_DRINK}
+          variables={{
+            input: { type: "MIXED", lat: this.props.lat, long: this.props.lng }
+          }}
+        >
+          {(createDrink, { loading, error }) => {
+            if (loading) return <p> Loading </p>;
+            if (error) return <p>An error occurred</p>;
+            return (
+              <Clicker>
+                <Button onClick={createDrink}>M</Button>
+                <Query
+                  query={GET_NUMBER}
+                  variables={{
+                    input: { type: "MIXED" }
+                  }}
+                >
+                  {({ loading, error, data }) => {
+                    if (loading) return <p> Loading </p>;
+                    if (error) return <p>An error occurred</p>;
+                    return <Counter>{data.number.number}</Counter>;
+                  }}
+                </Query>
+              </Clicker>
+            );
+          }}
+        </Mutation>
       </ButtonBar>
     );
   }
