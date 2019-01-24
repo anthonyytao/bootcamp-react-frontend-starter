@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Title, LineInput, SubmitButton, SecondaryOptionText } from "./styles";
 import { Mutation } from "react-apollo";
+import { withRouter } from "react-router";
 import CREATE_USER from "./mutations";
 
-class SignUp extends Component {
+class SignUpComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,9 +36,8 @@ class SignUp extends Component {
             } = data;
             localStorage.setItem("token", token);
             this.props.history.push("/users");
-            this.props.authenticateUser();
           }
-          return <div>{data.createUser.error.message} </div>;
+          return <div>{data.createUser.error} </div>;
         }}
       >
         {(createUser, { loading, error }) => {
@@ -72,7 +72,9 @@ class SignUp extends Component {
                 type="password"
               />
               {this.state.email && this.state.password && (
-                <SubmitButton onClick={createUser}><i class="fa fa-check"></i></SubmitButton>
+                <SubmitButton onClick={createUser}>
+                  <i class="fa fa-check" />
+                </SubmitButton>
               )}
               {!(this.state.email && this.state.password) && (
                 <SecondaryOptionText onClick={this.props.changeMode}>
@@ -87,4 +89,5 @@ class SignUp extends Component {
   }
 }
 
+const SignUp = withRouter(SignUpComponent);
 export default SignUp;

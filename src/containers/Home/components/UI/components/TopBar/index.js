@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  Dropdown,
-  DropdownBar,
-  SearchButton,
-  SearchInput,
-  Selection
-} from "./styles";
+import { Dropdown, DropdownBar, SearchButton, SearchInput } from "./styles";
 
 class TopBar extends Component {
   constructor() {
@@ -22,7 +16,6 @@ class TopBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <SettingsButton />
         <DropdownBar>
           <Dropdown
             id="groups"
@@ -86,6 +79,7 @@ class TopBar extends Component {
             </SearchButton>
           </div>
         </DropdownBar>
+        <button onClick={localStorage.removeItem("token")}>logout</button>
       </React.Fragment>
     );
   }

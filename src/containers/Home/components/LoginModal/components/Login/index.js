@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Title, LineInput, SubmitButton, SecondaryOptionText } from "./styles";
 import { Mutation } from "react-apollo";
+import { withRouter } from "react-router";
 import LOGIN from "./mutations";
 
-class Login extends Component {
+class LoginComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,9 +31,8 @@ class Login extends Component {
             } = data;
             localStorage.setItem("token", token);
             this.props.history.push("/users");
-            this.props.authenticateUser();
           }
-          return <div>{data.loginUser.error.message} </div>;
+          return <div>{data.loginUser.error} </div>;
         }}
       >
         {(loginUser, { loading, error }) => {
@@ -60,7 +60,9 @@ class Login extends Component {
                 type="password"
               />
               {this.state.email && this.state.password && (
-                <SubmitButton onClick={loginUser}><i class="fa fa-check"></i></SubmitButton>
+                <SubmitButton onClick={loginUser}>
+                  <i class="fa fa-check" />
+                </SubmitButton>
               )}
               {!(this.state.email && this.state.password) && (
                 <SecondaryOptionText onClick={this.props.changeMode}>
@@ -75,4 +77,5 @@ class Login extends Component {
   }
 }
 
+const Login = withRouter(LoginComponent);
 export default Login;

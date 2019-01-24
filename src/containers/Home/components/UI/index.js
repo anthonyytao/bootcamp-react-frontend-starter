@@ -99,9 +99,10 @@ class UI extends Component {
                   lng={this.state.lng}
                   zoom={this.state.zoom}
                   findCoordinates={this.findCoordinates}
-                  positions={data.drinks.drinks.map(drink => [
-                    { lat: parseFloat(drink.lat), lng: parseFloat(drink.long) }
-                  ])}
+                  positions={data.drinks.drinks.map(drink => ({
+                    lat: parseFloat(drink.lat),
+                    lng: parseFloat(drink.long)
+                  }))}
                   options={this.state.options}
                 />
               </div>
