@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
-const CREATE_USER = gql`
-  mutation createUser($input: CreateUserInput!) {
-    createUser(input: $input) {
+const LOGIN = gql`
+  mutation loginUser($input: LoginInput!) {
+    loginUser(input: $input) {
       success
       user {
         id
@@ -15,4 +15,4 @@ const CREATE_USER = gql`
   }
 `;
 
-export default CREATE_USER;
+export default LOGIN;
