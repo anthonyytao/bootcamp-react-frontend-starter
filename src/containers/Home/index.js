@@ -4,7 +4,7 @@ import LoginModal from "./components/LoginModal";
 import UI from "./components/UI";
 
 const Content = () => {
-  if (!true/*localStorage.getItem("token")*/) {
+  if (!localStorage.getItem("token")) {
     return (
       <React.Fragment>
         <UI />

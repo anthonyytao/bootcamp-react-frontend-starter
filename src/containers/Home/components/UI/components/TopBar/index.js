@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dropdown, DropdownBar, SettingsButton } from './styles';
+import { Dropdown, DropdownBar, SearchButton, SearchInput, Selection } from './styles';
 
 class TopBar extends Component {
   constructor() {
@@ -16,44 +16,48 @@ class TopBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <SettingsButton></SettingsButton>
         <DropdownBar>
           <Dropdown>
-            <option selected="selected" disabled="disabled">
-              Select people
-            </option>
-            <option value="allpeople">All</option>
-            <option value="friends">Friends</option>
-            <option value="me">Me</option>
+            <Selection selected="selected" disabled="disabled">
+              People
+            </Selection>
+            <Selection value="allpeople">All</Selection>
+            <Selection value="friends">Friends</Selection>
+            <Selection value="me">Me</Selection>
           </Dropdown>
           <Dropdown>
-            <option selected="selected" disabled="disabled">
-              Select a drink
-            </option>
-            <option value="alldrinks">All</option>
-            <option value="beer">Beer</option>
-            <option value="wine">Wine</option>
-            <option value="liquor">Liquor</option>
-            <option value="mixed">Mixed</option>
+            <Selection selected="selected" disabled="disabled">
+              Drinks
+            </Selection>
+            <Selection value="alldrinks">All</Selection>
+            <Selection value="beer">Beer</Selection>
+            <Selection value="wine">Wine</Selection>
+            <Selection value="liquor">Liquor</Selection>
+            <Selection value="mixed">Mixed</Selection>
           </Dropdown>
           <Dropdown>
-            <option selected="selected" disabled="disabled">
-              Select a time
-            </option>
-            <option value="alltime">All</option>
-            <option value="hour">Hour</option>
-            <option value="day">Day</option>
-            <option value="week">Week</option>
-            <option value="month">Month</option>
-            <option value="year">Year</option>
+            <Selection selected="selected" disabled="disabled">
+              Time
+            </Selection>
+            <Selection value="alltime">All</Selection>
+            <Selection value="hour">Hour</Selection>
+            <Selection value="day">Day</Selection>
+            <Selection value="week">Week</Selection>
+            <Selection value="month">Month</Selection>
+            <Selection value="year">Year</Selection>
           </Dropdown>
           <div>
-            <input
+            <SearchInput
+              placeholder="Add friend by email"
               type="text"
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck="false"
               value={this.state.value}
               onChange={this.handleChange}
             />
-            <button>Search for friends</button>
+            <SearchButton><i class="fa fa-search"></i></SearchButton>
           </div>
         </DropdownBar>
       </React.Fragment>

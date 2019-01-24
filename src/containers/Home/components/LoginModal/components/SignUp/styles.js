@@ -2,8 +2,11 @@ import styled from 'styled-components'
 import { Flex } from 'grid-styled'
 
 export const Title = styled(Flex)`
-  color: black;
   font-size: 50px;
+  background: -webkit-linear-gradient(#1898ff, #21C4FF);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-family: 'Nunito';
   margin-bottom: 20px;
 `
@@ -22,7 +25,6 @@ export const LineInput = styled.input`
 `
 export const SubmitButton = styled(Flex)`
   color: white;
-  font-weight: bold;
   margin-top: 20px;
   width: 40px;
   height: 40px;
@@ -36,7 +38,7 @@ export const SubmitButton = styled(Flex)`
   }
 `
 export const SecondaryOptionText = styled(Flex)`
-  color: #1CB0F6;
+  color: #21C4FF;
   height: 30px;
   margin-top: 30px;
   font-size: 12px;
