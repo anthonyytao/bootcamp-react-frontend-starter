@@ -4,10 +4,6 @@ const CREATE_USER = gql`
   mutation createUser($input: CreateUserInput!) {
     createUser(input: $input) {
       success
-      User {
-        name
-        email
-      }
       token
       error {
         message
