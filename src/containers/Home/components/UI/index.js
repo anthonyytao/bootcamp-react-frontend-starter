@@ -87,7 +87,9 @@ class UI extends Component {
     return (
       <Query
         query={GET_DRINKS}
-        variables={{ input: { Lat: this.state.lat, Long: this.state.lng } }}
+        variables={{
+          input: { location: { Lat: this.state.lat, Long: this.state.lng } }
+        }}
       >
         {({ loading, error, data }) => {
           if (loading) return <p> Loading </p>;
