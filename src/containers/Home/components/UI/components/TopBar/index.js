@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Dropdown, DropdownBar, SettingsButton } from "./styles";
+import {
+  Dropdown,
+  DropdownBar,
+  SearchButton,
+  SearchInput,
+  Selection
+} from "./styles";
 
 class TopBar extends Component {
   constructor() {
@@ -65,12 +71,19 @@ class TopBar extends Component {
             <option value="YEAR">Year</option>
           </Dropdown>
           <div>
-            <input
+            <SearchInput
+              placeholder="Add friend by email"
               type="text"
+              autoComplete="off"
+              autoCorrect="off"
+              autoCapitalize="off"
+              spellCheck="false"
               value={this.state.value}
               onChange={this.handleChange}
             />
-            <button>Search for friends</button>
+            <SearchButton>
+              <i class="fa fa-search" />
+            </SearchButton>
           </div>
         </DropdownBar>
       </React.Fragment>

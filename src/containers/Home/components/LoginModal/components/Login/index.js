@@ -43,16 +43,24 @@ class Login extends Component {
               <Title>Login</Title>
               {this.state.error && <p>{this.state.error} </p>}
               <LineInput
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
                 placeholder="Email"
                 onChange={e => this.onChange("email", e)}
               />
               <LineInput
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
                 placeholder="Password"
                 onChange={e => this.onChange("password", e)}
                 type="password"
               />
               {this.state.email && this.state.password && (
-                <SubmitButton onClick={loginUser}>&#x2713;</SubmitButton>
+                <SubmitButton onClick={loginUser}><i class="fa fa-check"></i></SubmitButton>
               )}
               {!(this.state.email && this.state.password) && (
                 <SecondaryOptionText onClick={this.props.changeMode}>

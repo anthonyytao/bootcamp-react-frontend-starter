@@ -47,20 +47,32 @@ class SignUp extends Component {
             <React.Fragment>
               <Title>Sign Up</Title>
               <LineInput
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
                 placeholder="Username"
                 onChange={e => this.onChange("displayName", e)}
               />
               <LineInput
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
                 placeholder="Email"
                 onChange={e => this.onChange("email", e)}
               />
               <LineInput
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
                 placeholder="Password"
                 onChange={e => this.onChange("password", e)}
                 type="password"
               />
               {this.state.email && this.state.password && (
-                <SubmitButton onClick={createUser}>&#x2713;</SubmitButton>
+                <SubmitButton onClick={createUser}><i class="fa fa-check"></i></SubmitButton>
               )}
               {!(this.state.email && this.state.password) && (
                 <SecondaryOptionText onClick={this.props.changeMode}>

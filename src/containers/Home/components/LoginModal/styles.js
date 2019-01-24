@@ -23,9 +23,9 @@ export const LoginBox = styled(Flex)`
   width: 80vh;
   padding: 50px;
   background-color: white;
-  border: none;
-  border-radius: 25px;
+  border-style: solid;
+  border-image: linear-gradient(to bottom right, #1898ff, #21C4FF);
+  border-image-slice: 1;
+  border-width: 10px;
   box-shadow: 0px 10px 8px #777777;
 `
-
-export const Text = styled(Flex)``

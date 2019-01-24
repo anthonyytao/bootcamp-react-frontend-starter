@@ -8,13 +8,11 @@ export const Button = styled.button`
     border-radius: 50%;
     height: 60px;
     width: 60px;
-    box-shadow: 0px 10px 10px rgba(0,179,255,0.2);
+    box-shadow: 0px 5px 10px rgba(0,179,255,0.2);
     font-weight: bold;
+    font-family: 'Nunito';
     :focus{
         outline: none;
-    }
-    :hover{
-        
     }
 `
 
@@ -35,6 +33,7 @@ export const Counter = styled(Flex)`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    box-shadow: 0px 5px 10px rgba(0,129,195,0.2);
     min-width: 20px;
     height: 30px;
     padding: 0px 10px 0px 35px;
@@ -42,10 +41,9 @@ export const Counter = styled(Flex)`
     border-radius: 0px 10px 10px 0px;
     border: none;
     text-align: center;
-    white-space: pre;
     font-family: 'Nunito';
     z-index: -1;
-    transform: translateX(-30px)
+    transform: translateX(-30px);
 `
 
 export const Clicker = styled(Flex)`
