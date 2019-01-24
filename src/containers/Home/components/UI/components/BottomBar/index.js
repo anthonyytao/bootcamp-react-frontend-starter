@@ -17,29 +17,27 @@ class BottomBar extends Component {
       <ButtonBar>
         <Clicker>
           <Button onClick={() => this.setState({ beer: this.state.beer + 1 })}>
-            Beer
+            B
           </Button>
           <Counter>{this.state.beer}</Counter>
         </Clicker>
         <Clicker>
           <Button onClick={() => this.setState({ wine: this.state.wine + 1 })}>
-            Wine
+            W
           </Button>
           <Counter>{this.state.wine}</Counter>
         </Clicker>
         <Clicker>
-          <Button
-            onClick={() => this.setState({ liquor: this.state.liquor + 1 })}
-          >
-            Liquor
+          <Button onClick={() => this.setState({ liquor: this.state.liquor + 1 })}>
+            L
           </Button>
           <Counter>{this.state.liquor}</Counter>
         </Clicker>
         <Clicker>
           <Button onClick={() => this.setState({ mixed: this.state.mixed + 1 })}>
-            Mixed
+            M
           </Button>
-          <Counter>{this.state.mixed}</Counter>
+          <Counter>{this.state.mixed} </Counter>
         </Clicker>
       </ButtonBar>
     );

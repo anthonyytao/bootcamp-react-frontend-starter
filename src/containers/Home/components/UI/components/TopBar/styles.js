@@ -25,8 +25,7 @@ export const SettingsButton = styled(Flex)`
     left: 0vh;
     height: 13vh;
     width: 13vh;
-    border: 2px yellow dashed;
-    background-color: purple;
-    border-radius: 0vh 0vh 7.5vh 0vh;
+    background-color: gray;
+    border-radius: 0vh 0vh 5vh 0vh;
     z-index: 2;
 `
