@@ -18,9 +18,9 @@ class UI extends Component {
     this.state = {
       lat: 42.375,
       lng: -71.1167,
-      type: "",
-      date: "",
-      group: "",
+      type: "ALL",
+      date: "ALL",
+      group: "ALL",
       zoom: 15.2,
       options: {
         radius: 10,
@@ -28,7 +28,6 @@ class UI extends Component {
       }
     };
   }
-
   findCoordinates = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -39,7 +38,7 @@ class UI extends Component {
             "longitude",
             position.coords.longitude
           );
-          console.log(this.state);
+          // console.log(this.state);
           this.setState({
             lat: position.coords.latitude,
             lng: position.coords.longitude
@@ -57,31 +56,23 @@ class UI extends Component {
     }
   };
 
-  updateDrinkType = text => {
-    this.setState({ type: text });
-  };
-
-  updateTime = text => {
-    this.setState({ date: text });
-  };
-
-  updateGroup = text => {
-    this.setState({ group: text });
-  };
+  updateState = ({ type, date, group }) => {
+    this.setState({ type, date, group })
+  }
 
   render() {
+    console.log(this.state)
     return (
       <React.Fragment>
         <TopBar
-          updateDrinkType={this.updateDrinkType}
-          updateTime={this.updateTime}
-          updateGroup={this.updateGroup}
+          updateParentState={this.updateState}
         />
         <Query
           query={GET_DRINKS}
+          fetchPolicy="network-only"
           variables={{
             input: {
-              location: { Lat: this.state.lat, Long: this.state.lng },
+              location: { lat: this.state.lat, long: this.state.lng },
               type: this.state.type,
               date: this.state.date,
               group: this.state.group

@@ -52,7 +52,7 @@ class SignUpComponent extends Component {
                 autoCapitalize="off"
                 spellCheck="false"
                 placeholder="Username"
-                onChange={e => this.onChange("displayName", e)}
+                onChange={e => this.onChange("name", e)}
               />
               <LineInput
                 autoComplete="off"
