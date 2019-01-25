@@ -1,6 +1,13 @@
 import React, { Component } from "react";
-import { Dropdown, DropdownBar, SearchButton, SearchInput, LogOutButton } from "./styles";
-import { Link } from 'react-router-dom'
+import {
+  Dropdown,
+  DropdownBar,
+  SearchButton,
+  SearchInput,
+  LogOutButton
+} from "./styles";
+import { Link } from "react-router-dom";
+import ADD_FRIEND from "./mutations";
 
 class TopBar extends Component {
   constructor() {
@@ -14,15 +21,18 @@ class TopBar extends Component {
     };
   }
 
-  handleInputChange = (event) => {
+  handleInputChange = event => {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
-    this.setState({
-      [name]: value
-    }, () => this.props.updateParentState(this.state));
-  }
+    this.setState(
+      {
+        [name]: value
+      },
+      () => this.props.updateParentState(this.state)
+    );
+  };
 
   render() {
     return (
@@ -84,17 +94,29 @@ class TopBar extends Component {
               value={this.state.searchInput}
               onChange={this.handleInputChange}
             />
-            <SearchButton>
-              <i className="fa fa-search" />
-            </SearchButton>
+            <Mutation mutation={ADD_FRIEND}>
+              {(addFriend, { loading, error }) => {
+                if (loading) return <p> Loading </p>;
+                if (error) return <p>An error occurred</p>;
+                return (
+                  <SearchButton
+                    onClick={addFriend}
+                    variables={{ input: { email: this.state.searchInput } }}
+                  >
+                    <i className="fa fa-search" />
+                  </SearchButton>
+                );
+              }}
+            </Mutation>
           </div>
-          {localStorage.getItem('token') && (
+          {localStorage.getItem("token") && (
             <Link to="/">
-              <LogOutButton  onClick={() => localStorage.removeItem("token")}>Logout</LogOutButton>
+              <LogOutButton onClick={() => localStorage.removeItem("token")}>
+                Logout
+              </LogOutButton>
             </Link>
           )}
         </DropdownBar>
-        {/* <button onClick={localStorage.removeItem("token")}>logout</button> */}
       </React.Fragment>
     );
   }

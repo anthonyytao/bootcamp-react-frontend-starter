@@ -57,16 +57,14 @@ class UI extends Component {
   };
 
   updateState = ({ type, date, group }) => {
-    this.setState({ type, date, group })
-  }
+    this.setState({ type, date, group });
+  };
 
   render() {
-    console.log(this.state)
+    console.log(this.state);
     return (
       <React.Fragment>
-        <TopBar
-          updateParentState={this.updateState}
-        />
+        <TopBar updateParentState={this.updateState} />
         <Query
           query={GET_DRINKS}
           fetchPolicy="network-only"

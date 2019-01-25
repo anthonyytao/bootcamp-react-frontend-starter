@@ -1,17 +1,17 @@
 import gql from "graphql-tag";
 
-const CREATE_DRINK = gql`
-  mutation createDrink($input: CreateDrinkInput!) {
-    createDrink(input: $input) {
-      drink {
-        lat
-        long
-      }
+const ADD_FRIEND = gql`
+  mutation addFriend($input: FriendInput!) {
+    addFriend(input: $input) {
       error {
         message
+      }
+      success
+      user {
+        id
       }
     }
   }
 `;
 
-export default CREATE_DRINK;
+export default ADD_FRIEND;
