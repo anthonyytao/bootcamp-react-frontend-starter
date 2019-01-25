@@ -7,6 +7,7 @@ import {
   LogOutButton
 } from "./styles";
 import { Link } from "react-router-dom";
+import { Mutation } from "react-apollo";
 import ADD_FRIEND from "./mutations";
 
 class TopBar extends Component {
