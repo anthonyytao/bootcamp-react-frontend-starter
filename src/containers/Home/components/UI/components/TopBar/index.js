@@ -18,7 +18,8 @@ class TopBar extends Component {
       group: "ALL",
       type: "ALL",
       date: "ALL",
-      searchInput: ""
+      searchInput: "",
+      error: ""
     };
   }
 
@@ -36,6 +37,7 @@ class TopBar extends Component {
   };
 
   render() {
+    console.log(this.state)
     return (
       <React.Fragment>
         <DropdownBar>
@@ -95,10 +97,15 @@ class TopBar extends Component {
               value={this.state.searchInput}
               onChange={this.handleInputChange}
             />
-            <Mutation
-              mutation={ADD_FRIEND}
+            <Mutation 
+              mutation={ADD_FRIEND} 
               variables={{ input: { email: this.state.searchInput } }}
-            >
+              onCompleted={(data) => {
+                if(!data.addFriend.success) {
+                  this.setState({error: data.addFriend.error.message})
+                }
+              }}
+              >
               {(addFriend, { loading, error }) => {
                 if (loading) return <p> Loading </p>;
                 if (error) return <p>An error occurred</p>;
