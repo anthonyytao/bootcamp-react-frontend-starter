@@ -1,17 +1,28 @@
 import React, { Component } from "react";
-import { Dropdown, DropdownBar, SearchButton, SearchInput } from "./styles";
+import { Dropdown, DropdownBar, SearchButton, SearchInput, LogOutButton } from "./styles";
+import { Link } from 'react-router-dom'
 
 class TopBar extends Component {
   constructor() {
     super();
     this.state = {
-      searchvalue: ""
+      searchvalue: "",
+      group: "ALL",
+      type: "ALL",
+      date: "ALL",
+      searchInput: ""
     };
   }
 
-  handleChange = e => {
-    this.setState({ searchvalue: e.target.value });
-  };
+  handleInputChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    }, () => this.props.updateParentState(this.state));
+  }
 
   render() {
     return (
@@ -19,11 +30,11 @@ class TopBar extends Component {
         <DropdownBar>
           <Dropdown
             id="groups"
-            onChange={() =>
-              this.props.updateGroup(document.getElementById("groups").value)
-            }
+            name="group"
+            value={this.state.group}
+            onChange={this.handleInputChange}
           >
-            <option selected="selected" disabled="disabled">
+            <option defaultValue="" disabled="disabled">
               Select people
             </option>
             <option value="ALL">All</option>
@@ -32,13 +43,11 @@ class TopBar extends Component {
           </Dropdown>
           <Dropdown
             id="drinkTypes"
-            onChange={() =>
-              this.props.updateDrinkType(
-                document.getElementById("drinkTypes").value
-              )
-            }
+            name="type"
+            value={this.state.type}
+            onChange={this.handleInputChange}
           >
-            <option selected="selected" disabled="disabled">
+            <option defaultValue="" disabled="disabled">
               Select a drink
             </option>
             <option value="ALL">All</option>
@@ -49,11 +58,11 @@ class TopBar extends Component {
           </Dropdown>
           <Dropdown
             id="times"
-            onChange={() =>
-              this.props.updateTime(document.getElementById("times").value)
-            }
+            name="date"
+            value={this.state.date}
+            onChange={this.handleInputChange}
           >
-            <option selected="selected" disabled="disabled">
+            <option defaultValue="" disabled="disabled">
               Select a time
             </option>
             <option value="ALL">All</option>
@@ -71,15 +80,21 @@ class TopBar extends Component {
               autoCorrect="off"
               autoCapitalize="off"
               spellCheck="false"
-              value={this.state.value}
-              onChange={this.handleChange}
+              name="searchInput"
+              value={this.state.searchInput}
+              onChange={this.handleInputChange}
             />
             <SearchButton>
-              <i class="fa fa-search" />
+              <i className="fa fa-search" />
             </SearchButton>
           </div>
+          {localStorage.getItem('token') && (
+            <Link to="/">
+              <LogOutButton  onClick={() => localStorage.removeItem("token")}>Logout</LogOutButton>
+            </Link>
+          )}
         </DropdownBar>
-        <button onClick={localStorage.removeItem("token")}>logout</button>
+        {/* <button onClick={localStorage.removeItem("token")}>logout</button> */}
       </React.Fragment>
     );
   }

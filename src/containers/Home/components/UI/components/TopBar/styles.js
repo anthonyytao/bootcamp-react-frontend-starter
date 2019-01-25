@@ -100,3 +100,22 @@ export const LogoArea = styled(Flex)`
     border-radius: 0vh 0vh 2vh 0vh;
     z-index: 2;
 `
+
+export const LogOutButton = styled.button`
+    color: #17ABFF;
+    background-color: white;
+    border: none;
+    text-align: center;
+    text-justify: middle;
+    font-size: 12px;
+    padding-left: 3px;
+    height: 30px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: 'Nunito';
+    :focus{
+        outline: none;
+    }
+`

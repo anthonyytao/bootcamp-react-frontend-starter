@@ -30,7 +30,7 @@ class LoginComponent extends Component {
               loginUser: { token }
             } = data;
             localStorage.setItem("token", token);
-            this.props.history.push("/users");
+            this.props.history.push("/");
           }
           return <div>{data.loginUser.error} </div>;
         }}
