@@ -17,6 +17,11 @@ class LoginComponent extends Component {
     this.setState({ [key]: e.target.value });
   };
 
+  login = async loginUser => {
+    await loginUser();
+    this.setState({ email: "", password: "" });
+  };
+
   render() {
     return (
       <Mutation
@@ -43,6 +48,7 @@ class LoginComponent extends Component {
               <Title>Login</Title>
               {this.state.error && <p>{this.state.error} </p>}
               <LineInput
+                value={this.state.email}
                 autoComplete="off"
                 autoCorrect="off"
                 autoCapitalize="off"
@@ -51,6 +57,7 @@ class LoginComponent extends Component {
                 onChange={e => this.onChange("email", e)}
               />
               <LineInput
+                value={this.state.password}
                 autoComplete="off"
                 autoCorrect="off"
                 autoCapitalize="off"
@@ -60,7 +67,7 @@ class LoginComponent extends Component {
                 type="password"
               />
               {this.state.email && this.state.password && (
-                <SubmitButton onClick={loginUser}>
+                <SubmitButton onClick={() => this.login(loginUser)}>
                   <i class="fa fa-check" />
                 </SubmitButton>
               )}

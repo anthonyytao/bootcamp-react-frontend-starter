@@ -18,6 +18,11 @@ class SignUpComponent extends Component {
     this.setState({ [key]: e.target.value });
   };
 
+  signup = async createUser => {
+    await createUser();
+    this.setState({ email: "", password: "" });
+  };
+
   render() {
     return (
       <Mutation
@@ -72,7 +77,7 @@ class SignUpComponent extends Component {
                 type="password"
               />
               {this.state.email && this.state.password && (
-                <SubmitButton onClick={createUser}>
+                <SubmitButton onClick={() => this.signup(createUser)}>
                   <i class="fa fa-check" />
                 </SubmitButton>
               )}
