@@ -85,7 +85,7 @@ class TopBar extends Component {
           </Dropdown>
           <div>
             <SearchInput
-              placeholder="Add friend by email"
+              placeholder="Add friends by email"
               type="text"
               autoComplete="off"
               autoCorrect="off"

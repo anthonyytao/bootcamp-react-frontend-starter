@@ -84,31 +84,17 @@ export const SearchInput = styled.input`
     }
 `
 
-export const LogoArea = styled(Flex)`
-    position: absolute;
-    top: 0vh;
-    left: 0vh;
-    height: 13vh;
-    width: 13vh;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    background-color: #FFFFFF;
-    border-right: 10px solid #21C4FF;
-    border-bottom: 10px solid #21C4FF;
-    border-radius: 0vh 0vh 2vh 0vh;
-    z-index: 2;
-`
-
 export const LogOutButton = styled.button`
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
     color: #17ABFF;
     background-color: white;
     border: none;
     text-align: center;
     text-justify: middle;
     font-size: 12px;
-    padding-left: 3px;
+    padding: 0px 6px;
     height: 30px;
     border-radius: 10px;
     text-transform: uppercase;
