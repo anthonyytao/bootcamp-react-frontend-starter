@@ -13,6 +13,14 @@ class BottomBar extends Component {
           variables={{
             input: { type: "BEER", lat: this.props.lat, long: this.props.lng }
           }}
+          refetchQueries={() => {
+            return [
+              {query: GET_NUMBER,
+              variables: {
+                input: { type: "BEER" }
+              }}
+            ]
+          }}
         >
           {(createDrink, { loading, error }) => {
             if (loading) return <p> Loading </p>;
@@ -45,6 +53,14 @@ class BottomBar extends Component {
           mutation={CREATE_DRINK}
           variables={{
             input: { type: "WINE", lat: this.props.lat, long: this.props.lng }
+          }}
+          refetchQueries={() => {
+            return [
+              {query: GET_NUMBER,
+              variables: {
+                input: { type: "WINE" }
+              }}
+            ]
           }}
         >
           {(createDrink, { loading, error }) => {
@@ -79,6 +95,14 @@ class BottomBar extends Component {
           variables={{
             input: { type: "LIQUOR", lat: this.props.lat, long: this.props.lng }
           }}
+          refetchQueries={() => {
+            return [
+              {query: GET_NUMBER,
+              variables: {
+                input: { type: "LIQUOR" }
+              }}
+            ]
+          }}
         >
           {(createDrink, { loading, error }) => {
             if (loading) return <p> Loading </p>;
@@ -111,6 +135,14 @@ class BottomBar extends Component {
           mutation={CREATE_DRINK}
           variables={{
             input: { type: "MIXED", lat: this.props.lat, long: this.props.lng }
+          }}
+          refetchQueries={() => {
+            return [
+              {query: GET_NUMBER,
+              variables: {
+                input: { type: "MIXED" }
+              }}
+            ]
           }}
         >
           {(createDrink, { loading, error }) => {
