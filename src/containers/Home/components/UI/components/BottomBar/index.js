@@ -15,15 +15,23 @@ class BottomBar extends Component {
           }}
           refetchQueries={() => {
             return [
-              {query: GET_NUMBER,
-              variables: {
-                input: { type: "BEER" }
-              }}
-            ]
+              {
+                query: GET_NUMBER,
+                variables: {
+                  input: { type: "BEER" }
+                }
+              }
+            ];
           }}
         >
           {(createDrink, { loading, error }) => {
-            if (loading) return <p> Loading </p>;
+            if (loading)
+              return (
+                <Clicker>
+                  <Button>B</Button>
+                  <Counter />
+                </Clicker>
+              );
             if (error) return <p>An error occurred</p>;
             return (
               <Clicker>
@@ -42,9 +50,7 @@ class BottomBar extends Component {
                     }}
                   </Query>
                 )}
-                {!localStorage.getItem("token") && (
-                  <Counter>0</Counter>
-                )}
+                {!localStorage.getItem("token") && <Counter>0</Counter>}
               </Clicker>
             );
           }}
@@ -56,15 +62,23 @@ class BottomBar extends Component {
           }}
           refetchQueries={() => {
             return [
-              {query: GET_NUMBER,
-              variables: {
-                input: { type: "WINE" }
-              }}
-            ]
+              {
+                query: GET_NUMBER,
+                variables: {
+                  input: { type: "WINE" }
+                }
+              }
+            ];
           }}
         >
           {(createDrink, { loading, error }) => {
-            if (loading) return <p> Loading </p>;
+            if (loading)
+              return (
+                <Clicker>
+                  <Button>W</Button>
+                  <Counter />
+                </Clicker>
+              );
             if (error) return <p>An error occurred</p>;
             return (
               <Clicker>
@@ -83,9 +97,7 @@ class BottomBar extends Component {
                     }}
                   </Query>
                 )}
-                {!localStorage.getItem("token") && (
-                  <Counter>0</Counter>
-                )}
+                {!localStorage.getItem("token") && <Counter>0</Counter>}
               </Clicker>
             );
           }}
@@ -97,15 +109,23 @@ class BottomBar extends Component {
           }}
           refetchQueries={() => {
             return [
-              {query: GET_NUMBER,
-              variables: {
-                input: { type: "LIQUOR" }
-              }}
-            ]
+              {
+                query: GET_NUMBER,
+                variables: {
+                  input: { type: "LIQUOR" }
+                }
+              }
+            ];
           }}
         >
           {(createDrink, { loading, error }) => {
-            if (loading) return <p> Loading </p>;
+            if (loading)
+              return (
+                <Clicker>
+                  <Button>L</Button>
+                  <Counter />
+                </Clicker>
+              );
             if (error) return <p>An error occurred</p>;
             return (
               <Clicker>
@@ -124,9 +144,7 @@ class BottomBar extends Component {
                     }}
                   </Query>
                 )}
-                {!localStorage.getItem("token") && (
-                  <Counter>0</Counter>
-                )}
+                {!localStorage.getItem("token") && <Counter>0</Counter>}
               </Clicker>
             );
           }}
@@ -138,15 +156,23 @@ class BottomBar extends Component {
           }}
           refetchQueries={() => {
             return [
-              {query: GET_NUMBER,
-              variables: {
-                input: { type: "MIXED" }
-              }}
-            ]
+              {
+                query: GET_NUMBER,
+                variables: {
+                  input: { type: "MIXED" }
+                }
+              }
+            ];
           }}
         >
           {(createDrink, { loading, error }) => {
-            if (loading) return <p> Loading </p>;
+            if (loading)
+              return (
+                <Clicker>
+                  <Button>M</Button>
+                  <Counter />
+                </Clicker>
+              );
             if (error) return <p>An error occurred</p>;
             return (
               <Clicker>
@@ -165,9 +191,7 @@ class BottomBar extends Component {
                     }}
                   </Query>
                 )}
-                {!localStorage.getItem("token") && (
-                  <Counter>0</Counter>
-                )}
+                {!localStorage.getItem("token") && <Counter>0</Counter>}
               </Clicker>
             );
           }}

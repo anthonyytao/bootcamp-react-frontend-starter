@@ -95,15 +95,15 @@ class TopBar extends Component {
               value={this.state.searchInput}
               onChange={this.handleInputChange}
             />
-            <Mutation mutation={ADD_FRIEND}>
+            <Mutation
+              mutation={ADD_FRIEND}
+              variables={{ input: { email: this.state.searchInput } }}
+            >
               {(addFriend, { loading, error }) => {
                 if (loading) return <p> Loading </p>;
                 if (error) return <p>An error occurred</p>;
                 return (
-                  <SearchButton
-                    onClick={addFriend}
-                    variables={{ input: { email: this.state.searchInput } }}
-                  >
+                  <SearchButton onClick={addFriend}>
                     <i className="fa fa-search" />
                   </SearchButton>
                 );
