@@ -67,7 +67,7 @@ class UI extends Component {
         <TopBar
           updateParentState={this.updateState}
         />
-        <Query
+        {localStorage.getItem("token") && (<Query
           query={GET_DRINKS}
           fetchPolicy="network-only"
           variables={{
@@ -99,7 +99,17 @@ class UI extends Component {
               </div>
             );
           }}
-        </Query>
+        </Query>)}
+        {!localStorage.getItem("token") && (
+        <div style={{ width: "100%", height: "600px" }}>
+                <Map
+                  lat={this.state.lat}
+                  lng={this.state.lng}
+                  zoom={this.state.zoom}
+                  findCoordinates={this.findCoordinates}
+                  options={this.state.options}
+                />
+              </div>)}
         <BottomBar lat={this.state.lat} lng={this.state.lng} />
       </React.Fragment>
     );
