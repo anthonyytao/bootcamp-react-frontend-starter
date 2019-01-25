@@ -13,6 +13,14 @@ class BottomBar extends Component {
           variables={{
             input: { type: "BEER", lat: this.props.lat, long: this.props.lng }
           }}
+          refetchQueries={() => {
+            return [
+              {query: GET_NUMBER,
+              variables: {
+                input: { type: "BEER" }
+              }}
+            ]
+          }}
         >
           {(createDrink, { loading, error }) => {
             if (loading) return <p> Loading </p>;
@@ -20,18 +28,23 @@ class BottomBar extends Component {
             return (
               <Clicker>
                 <Button onClick={createDrink}>B</Button>
-                <Query
-                  query={GET_NUMBER}
-                  variables={{
-                    input: { type: "BEER" }
-                  }}
-                >
-                  {({ loading, error, data }) => {
-                    if (loading) return <p> Loading </p>;
-                    if (error) return <p>An error occurred</p>;
-                    return <Counter>{data.number.number}</Counter>;
-                  }}
-                </Query>
+                {localStorage.getItem("token") && (
+                  <Query
+                    query={GET_NUMBER}
+                    variables={{
+                      input: { type: "BEER" }
+                    }}
+                  >
+                    {({ loading, error, data }) => {
+                      if (loading) return <p> Loading </p>;
+                      if (error) return <p>An error occurred</p>;
+                      return <Counter>{data.number.number}</Counter>;
+                    }}
+                  </Query>
+                )}
+                {!localStorage.getItem("token") && (
+                  <Counter>0</Counter>
+                )}
               </Clicker>
             );
           }}
@@ -41,6 +54,14 @@ class BottomBar extends Component {
           variables={{
             input: { type: "WINE", lat: this.props.lat, long: this.props.lng }
           }}
+          refetchQueries={() => {
+            return [
+              {query: GET_NUMBER,
+              variables: {
+                input: { type: "WINE" }
+              }}
+            ]
+          }}
         >
           {(createDrink, { loading, error }) => {
             if (loading) return <p> Loading </p>;
@@ -48,18 +69,23 @@ class BottomBar extends Component {
             return (
               <Clicker>
                 <Button onClick={createDrink}>W</Button>
-                <Query
-                  query={GET_NUMBER}
-                  variables={{
-                    input: { type: "WINE" }
-                  }}
-                >
-                  {({ loading, error, data }) => {
-                    if (loading) return <p> Loading </p>;
-                    if (error) return <p>An error occurred</p>;
-                    return <Counter>{data.number.number}</Counter>;
-                  }}
-                </Query>
+                {localStorage.getItem("token") && (
+                  <Query
+                    query={GET_NUMBER}
+                    variables={{
+                      input: { type: "WINE" }
+                    }}
+                  >
+                    {({ loading, error, data }) => {
+                      if (loading) return <p> Loading </p>;
+                      if (error) return <p>An error occurred</p>;
+                      return <Counter>{data.number.number}</Counter>;
+                    }}
+                  </Query>
+                )}
+                {!localStorage.getItem("token") && (
+                  <Counter>0</Counter>
+                )}
               </Clicker>
             );
           }}
@@ -69,6 +95,14 @@ class BottomBar extends Component {
           variables={{
             input: { type: "LIQUOR", lat: this.props.lat, long: this.props.lng }
           }}
+          refetchQueries={() => {
+            return [
+              {query: GET_NUMBER,
+              variables: {
+                input: { type: "LIQUOR" }
+              }}
+            ]
+          }}
         >
           {(createDrink, { loading, error }) => {
             if (loading) return <p> Loading </p>;
@@ -76,18 +110,23 @@ class BottomBar extends Component {
             return (
               <Clicker>
                 <Button onClick={createDrink}>L</Button>
-                <Query
-                  query={GET_NUMBER}
-                  variables={{
-                    input: { type: "LIQUOR" }
-                  }}
-                >
-                  {({ loading, error, data }) => {
-                    if (loading) return <p> Loading </p>;
-                    if (error) return <p>An error occurred</p>;
-                    return <Counter>{data.number.number}</Counter>;
-                  }}
-                </Query>
+                {localStorage.getItem("token") && (
+                  <Query
+                    query={GET_NUMBER}
+                    variables={{
+                      input: { type: "LIQUOR" }
+                    }}
+                  >
+                    {({ loading, error, data }) => {
+                      if (loading) return <p> Loading </p>;
+                      if (error) return <p>An error occurred</p>;
+                      return <Counter>{data.number.number}</Counter>;
+                    }}
+                  </Query>
+                )}
+                {!localStorage.getItem("token") && (
+                  <Counter>0</Counter>
+                )}
               </Clicker>
             );
           }}
@@ -97,6 +136,14 @@ class BottomBar extends Component {
           variables={{
             input: { type: "MIXED", lat: this.props.lat, long: this.props.lng }
           }}
+          refetchQueries={() => {
+            return [
+              {query: GET_NUMBER,
+              variables: {
+                input: { type: "MIXED" }
+              }}
+            ]
+          }}
         >
           {(createDrink, { loading, error }) => {
             if (loading) return <p> Loading </p>;
@@ -104,18 +151,23 @@ class BottomBar extends Component {
             return (
               <Clicker>
                 <Button onClick={createDrink}>M</Button>
-                <Query
-                  query={GET_NUMBER}
-                  variables={{
-                    input: { type: "MIXED" }
-                  }}
-                >
-                  {({ loading, error, data }) => {
-                    if (loading) return <p> Loading </p>;
-                    if (error) return <p>An error occurred</p>;
-                    return <Counter>{data.number.number}</Counter>;
-                  }}
-                </Query>
+                {localStorage.getItem("token") && (
+                  <Query
+                    query={GET_NUMBER}
+                    variables={{
+                      input: { type: "MIXED" }
+                    }}
+                  >
+                    {({ loading, error, data }) => {
+                      if (loading) return <p> Loading </p>;
+                      if (error) return <p>An error occurred</p>;
+                      return <Counter>{data.number.number}</Counter>;
+                    }}
+                  </Query>
+                )}
+                {!localStorage.getItem("token") && (
+                  <Counter>0</Counter>
+                )}
               </Clicker>
             );
           }}

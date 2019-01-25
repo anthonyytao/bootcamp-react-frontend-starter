@@ -7,7 +7,7 @@ const Content = () => {
   if (!localStorage.getItem("token")) {
     return (
       <React.Fragment>
-        {/* <UI /> */}
+        <UI />
         <LoginModal />
       </React.Fragment>
     );

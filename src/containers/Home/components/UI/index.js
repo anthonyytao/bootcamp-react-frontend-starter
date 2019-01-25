@@ -65,39 +65,52 @@ class UI extends Component {
     return (
       <React.Fragment>
         <TopBar updateParentState={this.updateState} />
-        <Query
-          query={GET_DRINKS}
-          fetchPolicy="network-only"
-          variables={{
-            input: {
-              location: { lat: this.state.lat, long: this.state.lng },
-              type: this.state.type,
-              date: this.state.date,
-              group: this.state.group
-            }
-          }}
-        >
-          {({ loading, error, data }) => {
-            if (loading) return <p> Loading </p>;
-            if (error) return <p>An error occurred</p>;
+        {localStorage.getItem("token") && (
+          <Query
+            query={GET_DRINKS}
+            fetchPolicy="network-only"
+            variables={{
+              input: {
+                location: { lat: this.state.lat, long: this.state.lng },
+                type: this.state.type,
+                date: this.state.date,
+                group: this.state.group
+              }
+            }}
+          >
+            {({ loading, error, data }) => {
+              if (loading) return <p> Loading </p>;
+              if (error) return <p>An error occurred</p>;
 
-            return (
-              <div style={{ width: "100%", height: "600px" }}>
-                <Map
-                  lat={this.state.lat}
-                  lng={this.state.lng}
-                  zoom={this.state.zoom}
-                  findCoordinates={this.findCoordinates}
-                  positions={data.drinks.drinks.map(drink => ({
-                    lat: parseFloat(drink.lat),
-                    lng: parseFloat(drink.long)
-                  }))}
-                  options={this.state.options}
-                />
-              </div>
-            );
-          }}
-        </Query>
+              return (
+                <div style={{ width: "100%", height: "600px" }}>
+                  <Map
+                    lat={this.state.lat}
+                    lng={this.state.lng}
+                    zoom={this.state.zoom}
+                    findCoordinates={this.findCoordinates}
+                    positions={data.drinks.drinks.map(drink => ({
+                      lat: parseFloat(drink.lat),
+                      lng: parseFloat(drink.long)
+                    }))}
+                    options={this.state.options}
+                  />
+                </div>
+              );
+            }}
+          </Query>
+        )}
+        {!localStorage.getItem("token") && (
+          <div style={{ width: "100%", height: "600px" }}>
+            <Map
+              lat={this.state.lat}
+              lng={this.state.lng}
+              zoom={this.state.zoom}
+              findCoordinates={this.findCoordinates}
+              options={this.state.options}
+            />
+          </div>
+        )}
         <BottomBar lat={this.state.lat} lng={this.state.lng} />
       </React.Fragment>
     );
